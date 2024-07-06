@@ -26,6 +26,13 @@ W = Wooden Planks
  W
 W
 
+======== Plant Fiber ========
+Shapeless Recipe
+
+L = Leaves
+
+1x L -> 1x Plant Fiber
+
 ======== Thin Rope ========
 Shaped Recipe
 

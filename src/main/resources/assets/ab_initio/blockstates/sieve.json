@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "ad_initio:block/sieve/block"
+    }
+  }
+}

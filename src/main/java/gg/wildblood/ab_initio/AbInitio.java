@@ -1,6 +1,7 @@
 package gg.wildblood.ab_initio;
 
 import gg.wildblood.ab_initio.blocks.ModBlocks;
+import gg.wildblood.ab_initio.groups.ModGroups;
 import gg.wildblood.ab_initio.item.ModItems;
 import org.quiltmc.loader.api.ModContainer;
 import org.quiltmc.qsl.base.api.entrypoint.ModInitializer;
@@ -17,5 +18,6 @@ public class AbInitio implements ModInitializer {
 
 		ModItems.register(mod);
 		ModBlocks.register(mod);
+		ModGroups.register(mod);
     }
 }

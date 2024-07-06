@@ -1,9 +1,8 @@
 package gg.wildblood.ab_initio.item;
 
-import net.minecraft.item.BucketItem;
-import net.minecraft.item.Items;
+import gg.wildblood.ab_initio.AbInitio;
+import net.minecraft.item.Item;
 import net.minecraft.item.ShearsItem;
-import net.minecraft.loot.condition.MatchToolLootCondition;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
@@ -12,8 +11,14 @@ import org.quiltmc.qsl.item.setting.api.QuiltItemSettings;
 
 public class ModItems {
 	public static final ShearsItem WOODEN_SHEARS = new ShearsItem(new QuiltItemSettings().maxCount(1).maxDamage(30));
+	public static final Item PLANT_FIBER = new Item(new QuiltItemSettings());
+
+	private static void register(String itemName, Item item) {
+		Registry.register(Registries.ITEM, new Identifier(AbInitio.MOD_ID, itemName), item);
+	}
 
 	public static void register(ModContainer mod) {
-		Registry.register(Registries.ITEM, new Identifier(mod.metadata().id(), "wooden_shears"), WOODEN_SHEARS);
+		register("wooden_shears", WOODEN_SHEARS);
+		register("plant_fiber", PLANT_FIBER);
 	}
 }
