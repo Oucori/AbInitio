@@ -1,0 +1,36 @@
+{
+    "schema_version": 1,
+    "quilt_loader": {
+        "group": "${group}",
+        "id": "ab_initio",
+        "version": "${version}",
+        "metadata": {
+            "name": "Ab initio",
+            "description": "",
+            "contributors": {
+                "Gianni Bischoff": "Owner"
+            },
+            "contact": {},
+            "icon": "assets/example_mod/icon.png"
+        },
+        "intermediate_mappings": "net.fabricmc:intermediary",
+        "entrypoints": {
+            "init": "gg.wildblood.ab_initio.AbInitio"
+        },
+        "depends": [
+            {
+                "id": "quilt_loader",
+                "versions": ">=0.19.1"
+            },
+            {
+                "id": "quilted_fabric_api",
+                "versions": ">=7.0.2"
+            },
+            {
+                "id": "minecraft",
+                "versions": ">=1.20"
+            }
+        ]
+    },
+    "mixin": "ab_initio.mixins.json"
+}
