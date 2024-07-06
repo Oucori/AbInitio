@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 public class AbInitio implements ModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger("Ab initio");
+	public static final String MOD_ID = "ab_initio";
 
     @Override
     public void onInitialize(ModContainer mod) {
