@@ -11,7 +11,7 @@
                 "Gianni Bischoff": "Owner"
             },
             "contact": {},
-            "icon": "assets/example_mod/icon.png"
+            "icon": "assets/ab_initio/icon.png"
         },
         "intermediate_mappings": "net.fabricmc:intermediary",
         "entrypoints": {

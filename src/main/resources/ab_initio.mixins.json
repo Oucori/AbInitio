@@ -4,9 +4,7 @@
     "package": "gg.wildblood.ab_initio.mixin",
     "compatibilityLevel": "JAVA_17",
     "mixins": [],
-    "client": [
-        "TitleScreenMixin"
-    ],
+    "client": [],
     "injectors": {
         "defaultRequire": 1
     }
