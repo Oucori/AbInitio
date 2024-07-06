@@ -1,6 +1,5 @@
 package gg.wildblood.ab_initio.item.custom;
 
-import gg.wildblood.ab_initio.AbInitio;
 import gg.wildblood.ab_initio.item.ModItems;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.BlockState;
@@ -8,9 +7,6 @@ import net.minecraft.block.FluidDrainable;
 import net.minecraft.block.FluidFillable;
 import net.minecraft.block.dispenser.DispenserBlock;
 import net.minecraft.block.dispenser.ItemDispenserBehavior;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.damage.DamageSources;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
@@ -18,27 +14,24 @@ import net.minecraft.fluid.LavaFluid;
 import net.minecraft.fluid.WaterFluid;
 import net.minecraft.item.*;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
-import net.minecraft.state.property.Properties;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
-import org.jetbrains.annotations.Nullable;
 
 
 public class ClayBucket extends BucketItem {
 	private final Fluid fluid;
 	public ClayBucket(Fluid fluid, Settings settings){
 		super(fluid, settings);
-
 		this.fluid = fluid;
 		DispenserBlock.registerBehavior(this, new ItemDispenserBehavior());
 	}
@@ -95,6 +88,12 @@ public class ClayBucket extends BucketItem {
 						}
 
 						user.incrementStat(Stats.USED.getOrCreateStat(this));
+						if(this == ModItems.CLAY_LAVA_BUCKET) {
+							if(!world.isClient){
+								world.playSound(null,blockPos,SoundEvents.BLOCK_DECORATED_POT_SHATTER, SoundCategory.PLAYERS, 1f,1f);
+							}
+							return TypedActionResult.success(ItemStack.EMPTY, false);
+						}
 						return TypedActionResult.success(getEmptiedStack(itemStack, user), world.isClient());
 					} else {
 						return TypedActionResult.fail(itemStack);
@@ -110,20 +109,11 @@ public class ClayBucket extends BucketItem {
 		return !player.getAbilities().creativeMode ? new ItemStack(ModItems.CLAY_BUCKET) : stack;
 	}
 
-	@Override
-	public void onEmptied(@Nullable PlayerEntity player, World world, ItemStack stack, BlockPos pos) {
-		if(stack.getItem() == ModItems.CLAY_LAVA_BUCKET){
-			AbInitio.LOGGER.info(String.valueOf(stack.getDamage()));
-			stack.setDamage(5);
-			AbInitio.LOGGER.info(String.valueOf(stack.getDamage()));
-			stack.damage(10,player, playerEntity -> playerEntity.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
-			AbInitio.LOGGER.info(String.valueOf(stack.getDamage()));
-		}
-	}
 
 	@Override
 	public boolean isDamageable() {
 		return true;
 	}
+
 }
 
