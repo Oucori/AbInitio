@@ -1,4 +1,4 @@
-# Ab initio
+![icon.png](src/main/resources/assets/ab_initio/icon.png)
 
 ## Planned Content in this Mod
 - Sieve Block and Recipe Type.

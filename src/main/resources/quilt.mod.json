@@ -5,10 +5,11 @@
         "id": "ab_initio",
         "version": "${version}",
         "metadata": {
-            "name": "Ab initio",
+            "name": "Ab Initio",
             "description": "",
             "contributors": {
-                "Gianni Bischoff": "Owner"
+							"Gianni Bischoff": "Creator",
+							"Sotori": "Contributor"
             },
             "contact": {},
             "icon": "assets/ab_initio/icon.png"
