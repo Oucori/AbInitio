@@ -2,8 +2,8 @@
   "credit": "Made with Blockbench",
   "texture_size": [64, 64],
   "textures": {
-    "0": "ab_initio_composter",
-    "particle": "ab_initio_composter"
+    "0": "ab_initio:block/ab_initio_composter",
+    "particle": "ab_initio:block/ab_initio_composter"
   },
   "elements": [
     {
