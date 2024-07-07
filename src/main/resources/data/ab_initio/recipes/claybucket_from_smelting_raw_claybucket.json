@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0.0,
+  "group": "misc",
+  "ingredient": {
+    "item": "ab_initio:clay_bucket_raw"
+  },
+  "result": "ab_initio:clay_bucket"
+}

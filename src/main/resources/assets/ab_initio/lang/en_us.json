@@ -1,3 +1,7 @@
 {
+  "item.ab_initio.clay_bucket_raw": "Raw clay bucket",
+  "item.ab_initio.clay_bucket": "Clay bucket",
+  "item.ab_initio.clay_water_bucket": "Clay Water bucket",
+  "item.ab_initio.clay_lava_bucket": "Clay Lava bucket",
   "item.ab_initio.wooden_shears": "Wooden Shears"
 }
