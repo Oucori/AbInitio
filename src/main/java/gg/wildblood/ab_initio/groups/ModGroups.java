@@ -1,6 +1,7 @@
 package gg.wildblood.ab_initio.groups;
 
 import gg.wildblood.ab_initio.AbInitio;
+import gg.wildblood.ab_initio.blocks.ModBlocks;
 import gg.wildblood.ab_initio.item.ModItems;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
@@ -27,6 +28,7 @@ public class ModGroups {
 		ItemGroupEvents.modifyEntriesEvent(AB_INITIO_ITEM_GROUP_KEY).register(itemGroup -> {
 			itemGroup.addItem(ModItems.WOODEN_SHEARS);
 			itemGroup.addItem(ModItems.PLANT_FIBER);
+			itemGroup.addItem(ModBlocks.SIEVE_BLOCK.asItem());
 		});
 	}
 }

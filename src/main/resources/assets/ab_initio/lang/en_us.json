@@ -1,5 +1,8 @@
 {
   "item.ab_initio.wooden_shears": "Wooden Shears",
   "item.ab_initio.plant_fiber": "Plant Fiber",
+
+  "block.ab_initio.sieve": "Sieve",
+
   "ab_initio.item_group": "Ab Initio"
 }

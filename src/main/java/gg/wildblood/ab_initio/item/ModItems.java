@@ -13,12 +13,12 @@ public class ModItems {
 	public static final ShearsItem WOODEN_SHEARS = new ShearsItem(new QuiltItemSettings().maxCount(1).maxDamage(30));
 	public static final Item PLANT_FIBER = new Item(new QuiltItemSettings());
 
-	private static void register(String itemName, Item item) {
+	private static void registerItem(String itemName, Item item) {
 		Registry.register(Registries.ITEM, new Identifier(AbInitio.MOD_ID, itemName), item);
 	}
 
-	public static void register(ModContainer mod) {
-		register("wooden_shears", WOODEN_SHEARS);
-		register("plant_fiber", PLANT_FIBER);
+	public static void registerItem(ModContainer mod) {
+		registerItem("wooden_shears", WOODEN_SHEARS);
+		registerItem("plant_fiber", PLANT_FIBER);
 	}
 }
