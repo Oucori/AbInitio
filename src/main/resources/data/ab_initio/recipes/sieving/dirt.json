@@ -1,0 +1,51 @@
+{
+  "type": "ab_initio:sieving",
+  "ingredients": [
+    {
+      "item": "minecraft:dirt"
+    }
+  ],
+  "processingTime": 40,
+  "results": [
+    {
+      "chance": 0.33,
+      "count": 2,
+      "item": "ab_initio:pebble"
+    },
+    {
+      "chance": 0.1,
+      "count": 2,
+      "item": "ab_initio:andesite_pebble"
+    },
+    {
+      "chance": 0.4,
+      "count": 3,
+      "item": "ab_initio:pebble"
+    },
+    {
+      "chance": 0.05,
+      "count": 1,
+      "item": "minecraft:wheat_seeds"
+    },
+    {
+      "chance": 0.001,
+      "count": 1,
+      "item": "minecraft:kelp"
+    },
+    {
+      "chance": 0.002,
+      "count": 1,
+      "item": "minecraft:melon_seeds"
+    },
+    {
+      "chance": 0.003,
+      "count": 1,
+      "item": "minecraft:pumpkin_seeds"
+    },
+    {
+      "chance": 0.002,
+      "count": 1,
+      "item": "minecraft:beetroot_seeds"
+    }
+  ]
+}

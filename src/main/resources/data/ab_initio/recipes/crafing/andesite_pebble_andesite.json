@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category" : "misc",
+  "pattern":[
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "ab_initio:andesite_pebble"
+    }
+  },
+  "result": {
+    "item": "minecraft:andesite"
+  }
+}

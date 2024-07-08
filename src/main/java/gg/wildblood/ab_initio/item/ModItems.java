@@ -18,6 +18,8 @@ public class ModItems {
 	public static final Item CLAY_LAVA_BUCKET = new ClayBucket(Fluids.LAVA, new QuiltItemSettings().maxCount(1));
 	public static final ShearsItem WOODEN_SHEARS = new ShearsItem(new QuiltItemSettings().maxCount(1).maxDamage(30));
 	public static final Item PLANT_FIBER = new Item(new QuiltItemSettings());
+	public static final Item PEBBLE = new Item(new QuiltItemSettings());
+	public static final Item ANDESITE_PEBBLE = new Item(new QuiltItemSettings());
 
 	private static void registerItem(String itemName, Item item) {
 		Registry.register(Registries.ITEM, new Identifier(AbInitio.MOD_ID, itemName), item);
@@ -30,5 +32,7 @@ public class ModItems {
 		registerItem("clay_lava_bucket", CLAY_LAVA_BUCKET);
 		registerItem("wooden_shears", WOODEN_SHEARS);
 		registerItem("plant_fiber", PLANT_FIBER);
+		registerItem("pebble", PEBBLE);
+		registerItem("andesite_pebble", ANDESITE_PEBBLE);
 	}
 }
