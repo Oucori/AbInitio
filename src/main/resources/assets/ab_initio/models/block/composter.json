@@ -2,8 +2,8 @@
   "credit": "Made with Blockbench",
   "texture_size": [64, 64],
   "textures": {
-    "0": "ab_initio:block/ab_initio_composter",
-    "particle": "ab_initio:block/ab_initio_composter"
+    "0": "ab_initio:block/composter",
+    "particle": "ab_initio:block/composter"
   },
   "elements": [
     {
@@ -41,8 +41,8 @@
       "scale": [0.25, 0.25, 0.25]
     },
     "gui": {
-      "rotation": [45, -45, 0],
-      "scale": [0.5, 0.5, 0.5]
+      "rotation": [60, 45, 0],
+      "scale": [0.7, 0.7, 0.7]
     },
     "head": {
       "translation": [-1.75, 2, 0],

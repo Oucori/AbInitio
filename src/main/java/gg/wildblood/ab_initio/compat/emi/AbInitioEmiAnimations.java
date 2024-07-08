@@ -17,4 +17,15 @@ public class AbInitioEmiAnimations extends CreateEmiAnimations {
 		});
 	}
 
+	public static void addComposter(WidgetHolder widgets, int x, int y) {
+		widgets.addDrawable(x, y, 0, 0, (matrices, mouseX, mouseY, delta) -> {
+			int scale = 22;
+
+			blockElement(ModBlocks.COMPOSTER_BLOCK.getDefaultState())
+				.rotateBlock(22.5, 22.5, 0)
+				.scale(scale)
+				.render(matrices);
+		});
+	}
+
 }

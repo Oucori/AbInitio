@@ -1,0 +1,17 @@
+{
+  "type": "ab_initio:composting",
+  "count" : 5,
+  "ingredients": [
+    {
+      "tag": "minecraft:leaves"
+    }
+  ],
+  "processingTime": 200,
+  "results": [
+    {
+      "chance": 1,
+      "count": 1,
+      "item": "minecraft:dirt"
+    }
+  ]
+}

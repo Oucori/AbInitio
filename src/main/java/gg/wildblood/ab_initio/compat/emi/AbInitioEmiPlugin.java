@@ -14,6 +14,7 @@ import dev.emi.emi.api.widget.Bounds;
 import gg.wildblood.ab_initio.AbInitio;
 import gg.wildblood.ab_initio.blocks.ModBlocks;
 import gg.wildblood.ab_initio.blocks.ModRecipeTypes;
+import gg.wildblood.ab_initio.compat.emi.recipes.CompostingEmiRecipe;
 import gg.wildblood.ab_initio.compat.emi.recipes.SievingEmiRecipe;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -31,6 +32,9 @@ public class AbInitioEmiPlugin implements EmiPlugin {
 
 	public static final EmiRecipeCategory
 		SIEVING = register("sieving", EmiStack.of(ModBlocks.SIEVE_BLOCK.get()));
+
+	public static final EmiRecipeCategory
+		COMPOSTING = register("composting", EmiStack.of(ModBlocks.COMPOSTER_BLOCK.get()));
 
 	@Override
 	public void register(EmiRegistry registry) {
@@ -54,10 +58,13 @@ public class AbInitioEmiPlugin implements EmiPlugin {
 		ALL.forEach((id, category) -> registry.addCategory(category));
 
 		registry.addWorkstation(SIEVING, EmiStack.of(ModBlocks.SIEVE_BLOCK.get()));
+		registry.addWorkstation(COMPOSTING, EmiStack.of(ModBlocks.COMPOSTER_BLOCK.get()));
 
 		RecipeManager manager = registry.getRecipeManager();
 
 		addAll(registry, ModRecipeTypes.SIEVING, SievingEmiRecipe::new);
+		addAll(registry, ModRecipeTypes.COMPOSTING, CompostingEmiRecipe::new);
+
 	}
 
 	@SuppressWarnings("unchecked")

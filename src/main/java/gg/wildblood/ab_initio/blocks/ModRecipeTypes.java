@@ -6,6 +6,7 @@ import com.simibubi.create.content.processing.recipe.ProcessingRecipeSerializer;
 import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
 import com.simibubi.create.foundation.utility.Lang;
 import gg.wildblood.ab_initio.AbInitio;
+import gg.wildblood.ab_initio.blocks.custom.composter.ComposterRecipe;
 import gg.wildblood.ab_initio.blocks.custom.sieve.SievingRecipe;
 import io.github.fabricators_of_create.porting_lib.util.ShapedRecipeUtil;
 import net.minecraft.inventory.Inventory;
@@ -23,7 +24,8 @@ import java.util.function.Supplier;
 
 public enum ModRecipeTypes implements IRecipeTypeInfo {
 
-	SIEVING(SievingRecipe::new);
+	SIEVING(SievingRecipe::new),
+	COMPOSTING(ComposterRecipe::new);
 
 	private final Identifier id;
 	private final RecipeSerializer<?> serializerObject;

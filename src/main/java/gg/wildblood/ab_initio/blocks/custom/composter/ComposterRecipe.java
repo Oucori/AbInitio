@@ -1,26 +1,32 @@
-package gg.wildblood.ab_initio.blocks.custom.sieve;
+package gg.wildblood.ab_initio.blocks.custom.composter;
 
 import com.google.gson.JsonObject;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
-import gg.wildblood.ab_initio.AbInitio;
+import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
 import gg.wildblood.ab_initio.blocks.ModRecipeTypes;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.world.World;
 
-public class SievingRecipe extends ProcessingRecipe<Inventory> {
-	public SievingRecipe(ProcessingRecipeBuilder.ProcessingRecipeParams params) {
-		super(ModRecipeTypes.SIEVING, params);
+public class ComposterRecipe extends ProcessingRecipe<Inventory> {
+	private int inputCount = 0;
+
+	public ComposterRecipe(ProcessingRecipeBuilder.ProcessingRecipeParams params) {
+		super(ModRecipeTypes.COMPOSTING, params);
+	}
+
+	public ComposterRecipe(IRecipeTypeInfo typeInfo, ProcessingRecipeBuilder.ProcessingRecipeParams params) {
+		super(typeInfo, params);
 	}
 
 	@Override
 	protected int getMaxInputCount() {
-		return 1;
+		return 8;
 	}
 
 	@Override
 	protected int getMaxOutputCount() {
-		return 4;
+		return 1;
 	}
 
 	@Override
@@ -34,5 +40,14 @@ public class SievingRecipe extends ProcessingRecipe<Inventory> {
 	@Override
 	protected boolean canSpecifyDuration() {
 		return true;
+	}
+
+	public int getInputCount() {
+		return this.inputCount;
+	}
+
+	@Override
+	public void readAdditional(JsonObject json) {
+			this.inputCount = json.get("count").getAsInt();
 	}
 }

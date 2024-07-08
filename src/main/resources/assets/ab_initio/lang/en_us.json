@@ -7,8 +7,12 @@
   "item.ab_initio.plant_fiber": "Plant Fiber",
 
   "block.ab_initio.sieve": "Sieve",
+  "block.ab_initio.composter": "Composter",
+
 
   "ab_initio.item_group": "Ab Initio",
 
-  "emi.category.ab_initio.sieving": "Sieving"
+  "emi.category.ab_initio.sieving": "Sieving",
+  "emi.category.ab_initio.composting": "Composting"
+
 }
