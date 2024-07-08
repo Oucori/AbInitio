@@ -3,10 +3,7 @@ package gg.wildblood.ab_initio.item;
 import gg.wildblood.ab_initio.item.custom.ClayBucket;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.Item;
-import net.minecraft.item.BucketItem;
-import net.minecraft.item.Items;
 import gg.wildblood.ab_initio.AbInitio;
-import net.minecraft.item.Item;
 import net.minecraft.item.ShearsItem;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -27,11 +24,11 @@ public class ModItems {
 	}
 
 	public static void registerItem(ModContainer mod) {
-		registerItem("clay_bucket_raw"), CLAY_BUCKET_RAW);
-		Registry.register(Registries.ITEM, new Identifier(mod.metadata().id(), "clay_bucket"), CLAY_BUCKET);
-		Registry.register(Registries.ITEM, new Identifier(mod.metadata().id(), "clay_water_bucket"), CLAY_WATER_BUCKET);
-		Registry.register(Registries.ITEM, new Identifier(mod.metadata().id(), "clay_lava_bucket"), CLAY_LAVA_BUCKET);
-		Registry.register(Registries.ITEM, new Identifier(mod.metadata().id(), "wooden_shears", WOODEN_SHEARS);
+		registerItem("clay_bucket_raw", CLAY_BUCKET_RAW);
+		registerItem("clay_bucket", CLAY_BUCKET);
+		registerItem("clay_water_bucket", CLAY_WATER_BUCKET);
+		registerItem("clay_lava_bucket", CLAY_LAVA_BUCKET);
+		registerItem("wooden_shears", WOODEN_SHEARS);
 		registerItem("plant_fiber", PLANT_FIBER);
 	}
 }
