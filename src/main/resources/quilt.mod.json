@@ -5,18 +5,20 @@
         "id": "ab_initio",
         "version": "${version}",
         "metadata": {
-            "name": "Ab initio",
+            "name": "Ab Initio",
             "description": "",
             "contributors": {
-                "Gianni Bischoff": "Owner"
+							"Gianni Bischoff": "Creator",
+							"Sotori": "Contributor"
             },
             "contact": {},
             "icon": "assets/ab_initio/icon.png"
         },
         "intermediate_mappings": "net.fabricmc:intermediary",
         "entrypoints": {
-            "init": "gg.wildblood.ab_initio.AbInitio"
-        },
+            "init": "gg.wildblood.ab_initio.AbInitio",
+						"emi": "gg.wildblood.ab_initio.compat.emi.AbInitioEmiPlugin"
+				},
         "depends": [
             {
                 "id": "quilt_loader",
