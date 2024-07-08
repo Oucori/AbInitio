@@ -28,6 +28,12 @@ public class ModGroups {
 		ItemGroupEvents.modifyEntriesEvent(AB_INITIO_ITEM_GROUP_KEY).register(itemGroup -> {
 			itemGroup.addItem(ModItems.WOODEN_SHEARS);
 			itemGroup.addItem(ModItems.PLANT_FIBER);
+
+			itemGroup.addItem(ModItems.CLAY_BUCKET_RAW);
+			itemGroup.addItem(ModItems.CLAY_BUCKET);
+			itemGroup.addItem(ModItems.CLAY_WATER_BUCKET);
+			itemGroup.addItem(ModItems.CLAY_LAVA_BUCKET);
+
 			itemGroup.addItem(ModBlocks.SIEVE_BLOCK.asItem());
 		});
 	}
