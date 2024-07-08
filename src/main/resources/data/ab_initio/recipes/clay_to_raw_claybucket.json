@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category" : "misc",
+  "pattern":[
+    "# #",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:clay_ball"
+    }
+  },
+  "result": {
+    "item": "ab_initio:clay_bucket_raw"
+  }
+}
