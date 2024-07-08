@@ -1,7 +1,6 @@
 package gg.wildblood.ab_initio.blocks;
 
 import com.simibubi.create.foundation.data.BlockStateGen;
-import com.simibubi.create.foundation.render.RenderTypes;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import gg.wildblood.ab_initio.AbInitio;
@@ -13,11 +12,9 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import org.quiltmc.loader.api.ModContainer;
 import org.quiltmc.qsl.item.setting.api.QuiltItemSettings;
 import net.minecraft.client.render.RenderLayer;
 
-import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
 import static com.simibubi.create.foundation.data.TagGen.axeOrPickaxe;
 import static gg.wildblood.ab_initio.AbInitio.AB_REGISTRATE;
 

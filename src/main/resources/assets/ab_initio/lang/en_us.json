@@ -4,5 +4,7 @@
 
   "block.ab_initio.sieve": "Sieve",
 
-  "ab_initio.item_group": "Ab Initio"
+  "ab_initio.item_group": "Ab Initio",
+
+  "emi.category.ab_initio.sieving": "Sieving"
 }

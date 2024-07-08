@@ -1,7 +1,6 @@
 package gg.wildblood.ab_initio.blocks;
 
 import com.simibubi.create.AllTags;
-import com.simibubi.create.Create;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeSerializer;
 import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
@@ -34,7 +33,7 @@ public enum ModRecipeTypes implements IRecipeTypeInfo {
 
 	ModRecipeTypes(Supplier<RecipeSerializer<?>> serializerSupplier, Supplier<RecipeType<?>> typeSupplier, boolean registerType) {
 		String name = Lang.asId(name());
-		id = AbInitio.asRessource(name);
+		id = AbInitio.asResource(name);
 		serializerObject = Registry.register(Registries.RECIPE_SERIALIZER, id, serializerSupplier.get());
 		if (registerType) {
 			typeObject = typeSupplier.get();
@@ -48,7 +47,7 @@ public enum ModRecipeTypes implements IRecipeTypeInfo {
 
 	ModRecipeTypes(Supplier<RecipeSerializer<?>> serializerSupplier) {
 		String name = Lang.asId(name());
-		id = AbInitio.asRessource(name);
+		id = AbInitio.asResource(name);
 		serializerObject = Registry.register(Registries.RECIPE_SERIALIZER, id, serializerSupplier.get());
 		typeObject = simpleType(id);
 		Registry.register(Registries.RECIPE_TYPE, id, typeObject);

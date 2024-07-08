@@ -28,6 +28,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
 
+@SuppressWarnings("UnstableApiUsage")
 public class SieveBlock extends DirectionalAxisKineticBlock implements IBE<SieveBlockEntity> {
 	public SieveBlock(Settings settings) {
 		super(settings.nonOpaque());
@@ -37,15 +38,12 @@ public class SieveBlock extends DirectionalAxisKineticBlock implements IBE<Sieve
 	public void onEntityLand(BlockView worldIn, Entity entityIn) {
 		super.onEntityLand(worldIn, entityIn);
 
-		AbInitio.LOGGER.info("Entity landed on Sieve");
 		if (entityIn.getWorld().isClient)
 			return;
 		if (!(entityIn instanceof ItemEntity itemEntity))
 			return;
 		if (!entityIn.isAlive())
 			return;
-
-		AbInitio.LOGGER.info("Entity landed on Sieve and is an ItemEntity");
 
 		SieveBlockEntity Sieve = null;
 		for (BlockPos pos : Iterate.hereAndBelow(entityIn.getBlockPos()))
@@ -78,9 +76,9 @@ public class SieveBlock extends DirectionalAxisKineticBlock implements IBE<Sieve
 		if (worldIn.isClient)
 			return ActionResult.SUCCESS;
 
-		withBlockEntityDo(worldIn, pos, millstone -> {
+		withBlockEntityDo(worldIn, pos, sieve -> {
 			boolean emptyOutput = true;
-			ItemStackHandler inv = millstone.outputInv;
+			ItemStackHandler inv = sieve.outputInv;
 			for (int slot = 0; slot < inv.getSlotCount(); slot++) {
 				ItemStack stackInSlot = inv.getStackInSlot(slot);
 				if (!stackInSlot.isEmpty())
@@ -91,7 +89,7 @@ public class SieveBlock extends DirectionalAxisKineticBlock implements IBE<Sieve
 			}
 
 			if (emptyOutput) {
-				inv = millstone.inputInv;
+				inv = sieve.inputInv;
 				for (int slot = 0; slot < inv.getSlotCount(); slot++) {
 					player.getInventory()
 						.offerOrDrop(inv.getStackInSlot(slot));
@@ -99,8 +97,8 @@ public class SieveBlock extends DirectionalAxisKineticBlock implements IBE<Sieve
 				}
 			}
 
-			millstone.markDirty();
-			millstone.sendData();
+			sieve.markDirty();
+			sieve.sendData();
 		});
 
 		return ActionResult.SUCCESS;

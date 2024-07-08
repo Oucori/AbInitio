@@ -8,18 +8,19 @@
   "processingTime": 50,
   "results": [
     {
-      "chance": 0.5,
+      "chance": 0.8,
       "count": 1,
       "item": "minecraft:cobblestone"
     },
     {
-      "chance": 0.1,
+      "chance": 0.2,
       "count": 1,
-      "item": "minecraft:gravel"
+      "item": "minecraft:cobblestone"
     },
     {
-      "chance": 0.1,
-      "item": "minecraft:sand"
+      "chance": 0.8,
+      "count": 1,
+      "item": "minecraft:gravel"
     }
   ]
 }

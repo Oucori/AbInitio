@@ -38,11 +38,12 @@ import java.util.List;
 import java.util.Optional;
 
 
+@SuppressWarnings("UnstableApiUsage")
 public class SieveBlockEntity extends KineticBlockEntity implements SidedStorageBlockEntity {
 	public ItemStackHandlerContainer inputInv;
 	public ItemStackHandler outputInv;
-	public SieveBlockEntity.SieveInventoryHandler capability;
-	public int timer;
+	private final SieveBlockEntity.SieveInventoryHandler capability;
+	private int timer;
 	private SievingRecipe lastRecipe;
 
 	public SieveBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {

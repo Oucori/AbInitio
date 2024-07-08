@@ -30,7 +30,7 @@ public class AbInitio implements ModInitializer {
 		ModGroups.register(mod);
     }
 
-	public static Identifier asRessource(String path){
+	public static Identifier asResource(String path){
 		return new Identifier(AbInitio.MOD_ID, path);
 	}
 }

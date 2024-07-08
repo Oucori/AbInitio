@@ -16,8 +16,9 @@
         },
         "intermediate_mappings": "net.fabricmc:intermediary",
         "entrypoints": {
-            "init": "gg.wildblood.ab_initio.AbInitio"
-        },
+            "init": "gg.wildblood.ab_initio.AbInitio",
+						"emi": "gg.wildblood.ab_initio.compat.emi.AbInitioEmiPlugin"
+				},
         "depends": [
             {
                 "id": "quilt_loader",
