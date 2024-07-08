@@ -1,0 +1,26 @@
+{
+  "type": "ab_initio:sieving",
+  "ingredients": [
+    {
+      "item": "minecraft:dirt"
+    }
+  ],
+  "processingTime": 50,
+  "results": [
+    {
+      "chance": 0.8,
+      "count": 1,
+      "item": "minecraft:cobblestone"
+    },
+    {
+      "chance": 0.2,
+      "count": 1,
+      "item": "minecraft:cobblestone"
+    },
+    {
+      "chance": 0.8,
+      "count": 1,
+      "item": "minecraft:gravel"
+    }
+  ]
+}

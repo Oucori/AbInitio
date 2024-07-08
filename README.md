@@ -1,6 +1,6 @@
-# Ab initio
+![icon.png](src/main/resources/assets/ab_initio/icon.png)
 
-## Planned Content in this Mod
+# Planned Content in this Mod
 - Sieve Block and Recipe Type.
 - Sieve that gets Powered by Mechanical Energy if Create is installed.
 
@@ -25,6 +25,13 @@ W = Wooden Planks
 
  W
 W
+
+======== Plant Fiber ========
+Shapeless Recipe
+
+L = Leaves
+
+1x L -> 1x Plant Fiber
 
 ======== Thin Rope ========
 Shaped Recipe

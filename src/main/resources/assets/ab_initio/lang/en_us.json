@@ -3,5 +3,12 @@
   "item.ab_initio.clay_bucket": "Clay bucket",
   "item.ab_initio.clay_water_bucket": "Clay Water bucket",
   "item.ab_initio.clay_lava_bucket": "Clay Lava bucket",
-  "item.ab_initio.wooden_shears": "Wooden Shears"
+  "item.ab_initio.wooden_shears": "Wooden Shears",
+  "item.ab_initio.plant_fiber": "Plant Fiber",
+
+  "block.ab_initio.sieve": "Sieve",
+
+  "ab_initio.item_group": "Ab Initio",
+
+  "emi.category.ab_initio.sieving": "Sieving"
 }
