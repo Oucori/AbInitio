@@ -6,6 +6,7 @@ import dev.emi.emi.api.widget.WidgetHolder;
 import gg.wildblood.ab_initio.blocks.custom.composter.ComposterRecipe;
 import gg.wildblood.ab_initio.compat.emi.AbInitioEmiAnimations;
 import gg.wildblood.ab_initio.compat.emi.AbInitioEmiPlugin;
+import net.minecraft.text.Text;
 
 public class CompostingEmiRecipe extends CreateEmiRecipe<ComposterRecipe> {
 	public CompostingEmiRecipe(ComposterRecipe recipe) {
@@ -19,6 +20,9 @@ public class CompostingEmiRecipe extends CreateEmiRecipe<ComposterRecipe> {
 		addTexture(widgets, AllGuiTextures.JEI_SHADOW, 32, 40);
 
 		addSlot(widgets, input.get(0), 14, 8);
+		int recipeAmount = 8;
+		widgets.addText(Text.literal("" + recipeAmount).asOrderedText(), 28, 20, -1, true);
+
 
 		for (int i = 0; i < output.size(); i++) {
 			int xOff = (i % 2) * 19;
