@@ -34,6 +34,10 @@ public class SieveBlock extends DirectionalAxisKineticBlock implements IBE<Sieve
 		super(settings.nonOpaque());
 	}
 
+	// #Todo: Add Rotation
+	// #Todo: Add Better Block Model
+	// #Todo: Animation for Sieving... ?
+
 	@Override
 	public void onEntityLand(BlockView worldIn, Entity entityIn) {
 		super.onEntityLand(worldIn, entityIn);
