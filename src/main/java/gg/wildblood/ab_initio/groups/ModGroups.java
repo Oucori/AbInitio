@@ -33,6 +33,7 @@ public class ModGroups {
 			itemGroup.addItem(ModItems.CLAY_BUCKET);
 			itemGroup.addItem(ModItems.CLAY_WATER_BUCKET);
 			itemGroup.addItem(ModItems.CLAY_LAVA_BUCKET);
+			itemGroup.addItem(ModItems.STONE_HAMMER);
 
 			itemGroup.addItem(ModBlocks.SIEVE_BLOCK.asItem());
 		});
