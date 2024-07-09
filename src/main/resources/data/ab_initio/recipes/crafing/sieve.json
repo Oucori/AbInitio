@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category" : "misc",
+  "pattern":[
+    "FFF",
+    "W W",
+    "W W"
+  ],
+  "key": {
+    "F": {
+      "item": "ab_initio:plant_fiber"
+    },
+    "W": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "result": {
+    "item": "ab_initio:sieve"
+  }
+}
