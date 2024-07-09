@@ -1,6 +1,7 @@
 package gg.wildblood.ab_initio.blocks.custom.sieve;
 
 import com.simibubi.create.content.kinetics.base.DirectionalAxisKineticBlock;
+import com.simibubi.create.content.kinetics.base.HorizontalKineticBlock;
 import com.simibubi.create.foundation.block.IBE;
 import com.simibubi.create.foundation.utility.Iterate;
 import gg.wildblood.ab_initio.AbInitio;
@@ -17,26 +18,48 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldView;
 
 
 @SuppressWarnings("UnstableApiUsage")
-public class SieveBlock extends DirectionalAxisKineticBlock implements IBE<SieveBlockEntity> {
+public class SieveBlock extends HorizontalKineticBlock implements IBE<SieveBlockEntity> {
 	public SieveBlock(Settings settings) {
 		super(settings.nonOpaque());
 	}
 
-	// #Todo: Add Rotation
 	// #Todo: Add Better Block Model
 	// #Todo: Animation for Sieving... ?
+
+	@Override
+	public BlockState getPlacementState(ItemPlacementContext context) {
+		Direction prefferedSide = getPreferredHorizontalFacing(context);
+		if (prefferedSide != null)
+			return getDefaultState().with(HORIZONTAL_FACING, prefferedSide);
+		return super.getPlacementState(context);
+	}
+
+	@Override
+	public Direction.Axis getRotationAxis(BlockState state) {
+		return state.get(HORIZONTAL_FACING)
+			.getAxis();
+	}
+
+	@Override
+	public boolean hasShaftTowards(WorldView world, BlockPos pos, BlockState state, Direction face) {
+		return face.getAxis() == state.get(HORIZONTAL_FACING)
+			.getAxis();
+	}
 
 	@Override
 	public void onEntityLand(BlockView worldIn, Entity entityIn) {
