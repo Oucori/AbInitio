@@ -23,7 +23,6 @@ public class ModItems {
 	public static final Item PEBBLE = new Item(new QuiltItemSettings());
 	public static final Item ANDESITE_PEBBLE = new Item(new QuiltItemSettings());
 
-	// Todo: Add Hammering Enchantment that triggers on block break.
 	// Todo: Maybe something else fany with the hammer?
 	public static final PickaxeItem STONE_HAMMER = new PickaxeItem(ToolMaterials.STONE, 3, -2.8F, new QuiltItemSettings());
 

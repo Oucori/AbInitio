@@ -21,6 +21,25 @@
                   }
                 }
               ]
+            },
+            {
+              "type": "minecraft:item",
+              "name": "minecraft:sand",
+              "conditions": [
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "enchantments": [
+                      {
+                        "enchantment": "ab_initio:hammering",
+                        "levels": {
+                          "min": 1
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
             }
           ]
         }
