@@ -1,11 +1,13 @@
 package gg.wildblood.ab_initio.blocks;
 
+import com.simibubi.create.content.processing.basin.BasinRenderer;
 import com.simibubi.create.foundation.data.BlockStateGen;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import gg.wildblood.ab_initio.AbInitio;
 import gg.wildblood.ab_initio.blocks.custom.sieve.SieveBlock;
 import gg.wildblood.ab_initio.blocks.custom.sieve.SieveBlockEntity;
+import gg.wildblood.ab_initio.blocks.custom.sieve.SieveRenderer;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.BlockItem;
@@ -31,6 +33,7 @@ public class ModBlocks {
 	public static final BlockEntityEntry<SieveBlockEntity> SIEVE_BLOCK_ENTITY = AB_REGISTRATE
 		.blockEntity("sieve", SieveBlockEntity::new)
 		.validBlocks(SIEVE_BLOCK)
+		.renderer(() -> SieveRenderer::new)
 		.register();
 
 
