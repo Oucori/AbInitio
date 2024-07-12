@@ -36,7 +36,6 @@ public class SieveBlock extends HorizontalKineticBlock implements IBE<SieveBlock
 		super(settings.nonOpaque());
 	}
 
-	// #Todo: Add Better Block Model
 	// #Todo: Animation for Sieving... ?
 
 	@Override
