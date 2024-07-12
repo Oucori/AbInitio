@@ -157,7 +157,7 @@ public class SieveBlockEntity extends KineticBlockEntity implements SidedStorage
 
 		ItemStackParticleEffect data = new ItemStackParticleEffect(ParticleTypes.ITEM, stackInSlot);
 		float angle = world.random.nextFloat() * 360;
-		Vec3d offset = new Vec3d(0, 0, 0.5f);
+		Vec3d offset = new Vec3d(0, .4, .2);
 		offset = VecHelper.rotate(offset, angle, Direction.Axis.Y);
 		Vec3d target = VecHelper.rotate(offset, getSpeed() > 0 ? 25 : -25, Direction.Axis.Y);
 

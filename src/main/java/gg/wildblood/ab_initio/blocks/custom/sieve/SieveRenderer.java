@@ -32,16 +32,19 @@ public class SieveRenderer extends SmartBlockEntityRenderer<SieveBlockEntity> {
 							  int light, int overlay) {
 		super.renderSafe(sieve, partialTicks, ms, buffer, light, overlay);
 
-		float baseHeigthTop = .7f;
-
 		renderOutputInventory(sieve, ms, buffer, light, overlay);
+
+		renderInputInventory(sieve, ms, buffer, light, overlay);
+
+	}
+
+	private void renderInputInventory(SieveBlockEntity sieve, MatrixStack ms, VertexConsumerProvider buffer, int light, int overlay) {
+		float baseHeigthTop = .7f;
 
 		if(sieve.visualizedInputItem.isEmpty())
 			return;
 
 		float progress = sieve.timer / 100f + .5f;
-
-		AbInitio.LOGGER.info("Progress: " + progress);
 
 		ItemStack stack = sieve.visualizedInputItem;
 
@@ -56,7 +59,6 @@ public class SieveRenderer extends SmartBlockEntityRenderer<SieveBlockEntity> {
 		renderItem(ms, buffer, light, overlay, stack);
 
 		ms.pop();
-
 	}
 
 	private void renderOutputInventory(SieveBlockEntity sieve, MatrixStack ms, VertexConsumerProvider buffer, int light, int overlay) {
