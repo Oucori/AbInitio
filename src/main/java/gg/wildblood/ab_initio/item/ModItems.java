@@ -4,7 +4,9 @@ import gg.wildblood.ab_initio.item.custom.ClayBucket;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.Item;
 import gg.wildblood.ab_initio.AbInitio;
+import net.minecraft.item.PickaxeItem;
 import net.minecraft.item.ShearsItem;
+import net.minecraft.item.ToolMaterials;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
@@ -21,6 +23,9 @@ public class ModItems {
 	public static final Item PEBBLE = new Item(new QuiltItemSettings());
 	public static final Item ANDESITE_PEBBLE = new Item(new QuiltItemSettings());
 
+	// Todo: Maybe something else fany with the hammer?
+	public static final PickaxeItem STONE_HAMMER = new PickaxeItem(ToolMaterials.STONE, 3, -2.8F, new QuiltItemSettings());
+
 	private static void registerItem(String itemName, Item item) {
 		Registry.register(Registries.ITEM, new Identifier(AbInitio.MOD_ID, itemName), item);
 	}
@@ -34,5 +39,6 @@ public class ModItems {
 		registerItem("plant_fiber", PLANT_FIBER);
 		registerItem("pebble", PEBBLE);
 		registerItem("andesite_pebble", ANDESITE_PEBBLE);
+		registerItem("hammer", STONE_HAMMER);
 	}
 }

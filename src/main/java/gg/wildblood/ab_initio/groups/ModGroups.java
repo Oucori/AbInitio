@@ -2,6 +2,7 @@ package gg.wildblood.ab_initio.groups;
 
 import gg.wildblood.ab_initio.AbInitio;
 import gg.wildblood.ab_initio.blocks.ModBlocks;
+import gg.wildblood.ab_initio.enchantment.ModEnchantments;
 import gg.wildblood.ab_initio.item.ModItems;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
@@ -33,6 +34,7 @@ public class ModGroups {
 			itemGroup.addItem(ModItems.CLAY_BUCKET);
 			itemGroup.addItem(ModItems.CLAY_WATER_BUCKET);
 			itemGroup.addItem(ModItems.CLAY_LAVA_BUCKET);
+			itemGroup.addItem(ModItems.STONE_HAMMER);
 
 			itemGroup.addItem(ModBlocks.SIEVE_BLOCK.asItem());
 		});

@@ -3,8 +3,10 @@ package gg.wildblood.ab_initio;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import gg.wildblood.ab_initio.blocks.ModBlocks;
 import gg.wildblood.ab_initio.blocks.ModRecipeTypes;
+import gg.wildblood.ab_initio.enchantment.ModEnchantments;
 import gg.wildblood.ab_initio.groups.ModGroups;
 import gg.wildblood.ab_initio.item.ModItems;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.util.Identifier;
 import org.quiltmc.loader.api.ModContainer;
 import org.quiltmc.qsl.base.api.entrypoint.ModInitializer;
@@ -23,6 +25,7 @@ public class AbInitio implements ModInitializer {
 
 		ModItems.registerItem(mod);
 		ModBlocks.register();
+		ModEnchantments.register(mod);
 
 		AB_REGISTRATE.register();
 
