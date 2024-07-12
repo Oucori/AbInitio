@@ -6,7 +6,6 @@ import gg.wildblood.ab_initio.blocks.ModRecipeTypes;
 import gg.wildblood.ab_initio.enchantment.ModEnchantments;
 import gg.wildblood.ab_initio.groups.ModGroups;
 import gg.wildblood.ab_initio.item.ModItems;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.util.Identifier;
 import org.quiltmc.loader.api.ModContainer;
 import org.quiltmc.qsl.base.api.entrypoint.ModInitializer;
