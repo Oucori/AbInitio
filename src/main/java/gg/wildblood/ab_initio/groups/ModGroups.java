@@ -27,15 +27,20 @@ public class ModGroups {
 
 		// Register items to the custom item group.
 		ItemGroupEvents.modifyEntriesEvent(AB_INITIO_ITEM_GROUP_KEY).register(itemGroup -> {
+			// Tools
 			itemGroup.addItem(ModItems.WOODEN_SHEARS);
-			itemGroup.addItem(ModItems.PLANT_FIBER);
-
 			itemGroup.addItem(ModItems.CLAY_BUCKET_RAW);
 			itemGroup.addItem(ModItems.CLAY_BUCKET);
 			itemGroup.addItem(ModItems.CLAY_WATER_BUCKET);
 			itemGroup.addItem(ModItems.CLAY_LAVA_BUCKET);
 			itemGroup.addItem(ModItems.STONE_HAMMER);
 
+			// Materials
+			itemGroup.addItem(ModItems.ANDESITE_PEBBLE);
+			itemGroup.addItem(ModItems.PEBBLE);
+			itemGroup.addItem(ModItems.PLANT_FIBER);
+
+			// Blocks
 			itemGroup.addItem(ModBlocks.SIEVE_BLOCK.asItem());
 		});
 	}
