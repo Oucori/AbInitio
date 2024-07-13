@@ -8,6 +8,9 @@ import com.simibubi.create.foundation.data.BuilderTransformers;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import gg.wildblood.ab_initio.AbInitio;
+import gg.wildblood.ab_initio.blocks.custom.cauldron.ClayCauldronBlock;
+import gg.wildblood.ab_initio.blocks.custom.cauldron.ClayCauldronEntity;
+import gg.wildblood.ab_initio.blocks.custom.cauldron.ClayCauldronRenderer;
 import gg.wildblood.ab_initio.blocks.custom.sieve.SieveBlock;
 import gg.wildblood.ab_initio.blocks.custom.sieve.SieveBlockEntity;
 import gg.wildblood.ab_initio.blocks.custom.sieve.SieveInstance;
@@ -46,6 +49,22 @@ public class ModBlocks {
 		.instance(() -> SieveInstance::new)
 		.validBlocks(SIEVE_BLOCK)
 		.renderer(() -> SieveRenderer::new)
+		.register();
+
+	public static final BlockEntry<ClayCauldronBlock> CLAY_CAULDRON_BLOCK =
+		AB_REGISTRATE.block("clay_cauldron", ClayCauldronBlock::new)
+			.initialProperties(() -> Blocks.TERRACOTTA)
+			.properties(p -> p.mapColor(MapColor.BROWN_TERRACOTTA))
+			.transform(axeOrPickaxe())
+			.addLayer(() -> RenderLayer::getCutoutMipped)
+			.item()
+			.transform(customItemModel())
+			.register();
+
+	public static final BlockEntityEntry<ClayCauldronEntity> CLAY_CAULDRON_ENTITY = AB_REGISTRATE
+		.blockEntity("clay_cauldron", ClayCauldronEntity::new)
+		.validBlocks(CLAY_CAULDRON_BLOCK)
+		.renderer(() -> ClayCauldronRenderer::new)
 		.register();
 
 

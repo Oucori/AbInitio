@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "ab_initio:block/clay_cauldron/block"
+    }
+  }
+}
