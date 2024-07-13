@@ -33,20 +33,6 @@ public enum ModRecipeTypes implements IRecipeTypeInfo {
 	private final RecipeType<?> typeObject;
 	private final Supplier<RecipeType<?>> type;
 
-	ModRecipeTypes(Supplier<RecipeSerializer<?>> serializerSupplier, Supplier<RecipeType<?>> typeSupplier, boolean registerType) {
-		String name = Lang.asId(name());
-		id = AbInitio.asResource(name);
-		serializerObject = Registry.register(Registries.RECIPE_SERIALIZER, id, serializerSupplier.get());
-		if (registerType) {
-			typeObject = typeSupplier.get();
-			Registry.register(Registries.RECIPE_TYPE, id, typeObject);
-			type = typeSupplier;
-		} else {
-			typeObject = null;
-			type = typeSupplier;
-		}
-	}
-
 	ModRecipeTypes(Supplier<RecipeSerializer<?>> serializerSupplier) {
 		String name = Lang.asId(name());
 		id = AbInitio.asResource(name);

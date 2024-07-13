@@ -4,7 +4,11 @@ import com.simibubi.create.Create;
 import com.simibubi.create.content.equipment.wrench.IWrenchable;
 import com.simibubi.create.content.fluids.transfer.GenericItemEmptying;
 import com.simibubi.create.content.fluids.transfer.GenericItemFilling;
+import com.simibubi.create.content.kinetics.belt.BeltBlockEntity;
+import com.simibubi.create.content.kinetics.belt.behaviour.DirectBeltInputBehaviour;
+import com.simibubi.create.content.logistics.funnel.FunnelBlock;
 import com.simibubi.create.foundation.block.IBE;
+import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import com.simibubi.create.foundation.fluid.FluidHelper;
 import com.simibubi.create.foundation.utility.Iterate;
 import gg.wildblood.ab_initio.AbInitio;
@@ -19,10 +23,12 @@ import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.sound.SoundCategory;
@@ -76,6 +82,32 @@ public class ClayCauldronBlock extends Block implements IBE<ClayCauldronEntity>,
 			else itemEntity.setStack(ItemHandlerHelper.copyStackWithSize(inEntity, (int) (inEntity.getCount() - inserted)));
 			t.commit();
 		}
+	}
+
+	public static boolean canOutputTo(BlockView world, BlockPos basinPos, Direction direction) {
+		BlockPos neighbour = basinPos.offset(direction);
+		BlockPos output = neighbour.down();
+		BlockState blockState = world.getBlockState(neighbour);
+
+		if (FunnelBlock.isFunnel(blockState)) {
+			if (FunnelBlock.getFunnelFacing(blockState) == direction)
+				return false;
+		} else if (!blockState.getCollisionShape(world, neighbour)
+			.isEmpty()) {
+			return false;
+		} else {
+			BlockEntity blockEntity = world.getBlockEntity(output);
+			if (blockEntity instanceof BeltBlockEntity) {
+				BeltBlockEntity belt = (BeltBlockEntity) blockEntity;
+				return belt.getSpeed() == 0 || belt.getMovementFacing() != direction.getOpposite();
+			}
+		}
+
+		DirectBeltInputBehaviour directBeltInputBehaviour =
+			BlockEntityBehaviour.get(world, output, DirectBeltInputBehaviour.TYPE);
+		if (directBeltInputBehaviour != null)
+			return directBeltInputBehaviour.canInsertFromSide(direction);
+		return false;
 	}
 
 	@Override

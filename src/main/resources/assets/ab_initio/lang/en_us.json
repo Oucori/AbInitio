@@ -16,5 +16,6 @@
 
   "ab_initio.item_group": "Ab Initio",
 
-  "emi.category.ab_initio.sieving": "Sieving"
+  "emi.category.ab_initio.sieving": "Sieving",
+  "emi.category.ab_initio.cauldron": "Cauldron"
 }

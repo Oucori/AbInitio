@@ -18,7 +18,7 @@ public class SievingRecipe extends ProcessingRecipe<Inventory> {
 
 	@Override
 	protected int getMaxOutputCount() {
-		return 2;
+		return 8;
 	}
 
 	@Override

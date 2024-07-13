@@ -1,5 +1,8 @@
 package gg.wildblood.ab_initio.compat.emi;
 
+import com.simibubi.create.AllRecipeTypes;
+import com.simibubi.create.compat.emi.CreateEmiPlugin;
+import com.simibubi.create.compat.emi.recipes.basin.MixingEmiRecipe;
 import com.simibubi.create.compat.recipeViewerCommon.HiddenItems;
 import com.simibubi.create.content.fluids.VirtualFluid;
 import com.simibubi.create.foundation.gui.menu.AbstractSimiContainerScreen;
@@ -14,6 +17,7 @@ import dev.emi.emi.api.widget.Bounds;
 import gg.wildblood.ab_initio.AbInitio;
 import gg.wildblood.ab_initio.blocks.ModBlocks;
 import gg.wildblood.ab_initio.blocks.ModRecipeTypes;
+import gg.wildblood.ab_initio.compat.emi.recipes.CauldronEmiRecipe;
 import gg.wildblood.ab_initio.compat.emi.recipes.SievingEmiRecipe;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -30,7 +34,8 @@ public class AbInitioEmiPlugin implements EmiPlugin {
 	public static final Map<Identifier, EmiRecipeCategory> ALL = new LinkedHashMap<>();
 
 	public static final EmiRecipeCategory
-		SIEVING = register("sieving", EmiStack.of(ModBlocks.SIEVE_BLOCK.get()));
+		SIEVING = register("sieving", EmiStack.of(ModBlocks.SIEVE_BLOCK.get())),
+		CAULDRON = register("cauldron", EmiStack.of(ModBlocks.CLAY_CAULDRON_BLOCK.get()));
 
 	@Override
 	public void register(EmiRegistry registry) {
@@ -54,10 +59,12 @@ public class AbInitioEmiPlugin implements EmiPlugin {
 		ALL.forEach((id, category) -> registry.addCategory(category));
 
 		registry.addWorkstation(SIEVING, EmiStack.of(ModBlocks.SIEVE_BLOCK.get()));
+		registry.addWorkstation(CAULDRON, EmiStack.of(ModBlocks.CLAY_CAULDRON_BLOCK.get()));
 
 		RecipeManager manager = registry.getRecipeManager();
 
 		addAll(registry, ModRecipeTypes.SIEVING, SievingEmiRecipe::new);
+		addAll(registry, ModRecipeTypes.CAULDRON, CAULDRON, CauldronEmiRecipe::new);
 	}
 
 	@SuppressWarnings("unchecked")

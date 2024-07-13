@@ -1,0 +1,14 @@
+{
+  "type": "ab_initio:cauldron",
+  "heatRequirement": "heated",
+  "ingredients": [
+    {
+      "item": "minecraft:sand"
+    }
+  ],
+  "results": [
+    {
+      "item": "minecraft:cobblestone"
+    }
+  ]
+}

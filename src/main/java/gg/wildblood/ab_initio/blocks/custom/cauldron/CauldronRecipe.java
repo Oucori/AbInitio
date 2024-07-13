@@ -8,7 +8,9 @@ import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import com.simibubi.create.foundation.blockEntity.behaviour.filtering.FilteringBehaviour;
 import com.simibubi.create.foundation.blockEntity.behaviour.fluid.SmartFluidTankBehaviour;
 import com.simibubi.create.foundation.fluid.FluidIngredient;
+import com.simibubi.create.foundation.item.SmartInventory;
 import com.simibubi.create.foundation.recipe.DummyCraftingContainer;
+import gg.wildblood.ab_initio.AbInitio;
 import gg.wildblood.ab_initio.blocks.ModRecipeTypes;
 import io.github.fabricators_of_create.porting_lib.fluids.FluidStack;
 import io.github.fabricators_of_create.porting_lib.transfer.TransferUtil;
@@ -18,9 +20,7 @@ import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
 import net.fabricmc.fabric.api.transfer.v1.storage.Storage;
 import net.fabricmc.fabric.api.transfer.v1.storage.StorageView;
 import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.CraftingRecipe;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.util.collection.DefaultedList;
@@ -31,7 +31,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-public class CauldronRecipe extends ProcessingRecipe<Inventory> {
+public class CauldronRecipe extends ProcessingRecipe<SmartInventory> {
 	public CauldronRecipe(ProcessingRecipeBuilder.ProcessingRecipeParams params) {
 		super(ModRecipeTypes.CAULDRON, params);
 	}
@@ -64,6 +64,9 @@ public class CauldronRecipe extends ProcessingRecipe<Inventory> {
 		// fabric: track consumed items to get remainders later
 		DefaultedList<ItemStack> consumedItems = DefaultedList.of();
 
+		AbInitio.LOGGER.info("Ingredients: " + ingredients);
+		AbInitio.LOGGER.info("Fluid Ingredients: " + fluidIngredients);
+		AbInitio.LOGGER.info("Fluid Output: " + recipeOutputFluids);
 		try (Transaction t = TransferUtil.getTransaction()) {
 			Ingredients: for (Ingredient ingredient : ingredients) {
 				for (StorageView<ItemVariant> view : availableItems.nonEmptyViews()) {
@@ -128,12 +131,12 @@ public class CauldronRecipe extends ProcessingRecipe<Inventory> {
 
 	@Override
 	protected int getMaxOutputCount() {
-		return 0;
+		return 4;
 	}
 
 	@Override
 	protected int getMaxFluidOutputCount() {
-		return 1;
+		return 2;
 	}
 
 	@Override
@@ -147,7 +150,11 @@ public class CauldronRecipe extends ProcessingRecipe<Inventory> {
 	}
 
 	@Override
-	public boolean matches(Inventory inventory, World world) {
-		return false;
+	public boolean matches(SmartInventory inventory, World world) {
+		AbInitio.LOGGER.info("CauldronRecipe: matches: getFluidResults().size() = " + getFluidResults().size());
+		if (inventory.isEmpty())
+			return false;
+		return ingredients.get(0)
+			.test(inventory.getStack(0));
 	}
 }

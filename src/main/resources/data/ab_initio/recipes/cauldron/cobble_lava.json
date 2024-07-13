@@ -1,0 +1,15 @@
+{
+  "type": "ab_initio:cauldron",
+  "heatRequirement": "heated",
+  "ingredients": [
+    {
+      "tag": "c:cobblestone"
+    }
+  ],
+  "results": [
+    {
+      "amount": 4050,
+      "fluid": "minecraft:lava"
+    }
+  ]
+}
