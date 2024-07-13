@@ -6,7 +6,6 @@ import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour
 import com.simibubi.create.foundation.item.ItemHelper;
 import com.simibubi.create.foundation.utility.NBTHelper;
 import com.simibubi.create.foundation.utility.VecHelper;
-import gg.wildblood.ab_initio.AbInitio;
 import gg.wildblood.ab_initio.blocks.ModRecipeTypes;
 import io.github.fabricators_of_create.porting_lib.transfer.TransferUtil;
 import io.github.fabricators_of_create.porting_lib.transfer.ViewOnlyWrappedStorageView;
@@ -47,9 +46,6 @@ public class SieveBlockEntity extends KineticBlockEntity implements SidedStorage
 	private SievingRecipe lastRecipe;
 
 	public ItemStack visualizedInputItem;
-	public List<ItemStack> visualizedOutputItems;
-
-	public static final int ANIMATION_TIME = 10;
 
 	public SieveBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
 		super(type, pos, state);
@@ -57,7 +53,6 @@ public class SieveBlockEntity extends KineticBlockEntity implements SidedStorage
 		outputInv = new ItemStackHandler(9);
 		capability = new SieveBlockEntity.SieveInventoryHandler();
 		visualizedInputItem = ItemStack.EMPTY;
-		visualizedOutputItems = Collections.synchronizedList(new ArrayList<>());;
 	}
 
 	@Override
@@ -172,8 +167,6 @@ public class SieveBlockEntity extends KineticBlockEntity implements SidedStorage
 		compound.put("InputInventory", inputInv.serializeNBT());
 		compound.put("OutputInventory", outputInv.serializeNBT());
 		compound.put("VisualizedInputItem", visualizedInputItem.serializeNBT());
-		compound.put("VisualizedOutputItems", NBTHelper.writeCompoundList(visualizedOutputItems, NBTSerializer::serializeNBTCompound));
-		visualizedOutputItems.clear();
 		super.write(compound, clientPacket);
 	}
 
@@ -183,8 +176,6 @@ public class SieveBlockEntity extends KineticBlockEntity implements SidedStorage
 		inputInv.deserializeNBT(compound.getCompound("InputInventory"));
 		outputInv.deserializeNBT(compound.getCompound("OutputInventory"));
 		visualizedInputItem = ItemStack.fromNbt(compound.getCompound("VisualizedInputItem"));
-		NBTHelper.iterateCompoundList(compound.getList("VisualizedOutputItems", NbtElement.COMPOUND_TYPE),
-			c -> visualizedOutputItems.add(ItemStack.fromNbt(c)));
 		super.read(compound, clientPacket);
 	}
 
