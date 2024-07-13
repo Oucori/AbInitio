@@ -1,6 +1,8 @@
 package gg.wildblood.ab_initio.blocks.custom.sieve;
 
+import com.simibubi.create.content.fluids.drain.ItemDrainBlock;
 import com.simibubi.create.content.kinetics.base.HorizontalKineticBlock;
+import com.simibubi.create.content.kinetics.saw.SawBlock;
 import com.simibubi.create.foundation.block.IBE;
 import com.simibubi.create.foundation.utility.Iterate;
 import gg.wildblood.ab_initio.blocks.ModBlocks;
@@ -35,9 +37,6 @@ public class SieveBlock extends HorizontalKineticBlock implements IBE<SieveBlock
 	public SieveBlock(Settings settings) {
 		super(settings.nonOpaque());
 	}
-
-	// #Todo: Add Better Block Model
-	// #Todo: Animation for Sieving... ?
 
 	@Override
 	public BlockState getPlacementState(ItemPlacementContext context) {

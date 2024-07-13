@@ -2,17 +2,17 @@ package gg.wildblood.ab_initio.blocks.custom.sieve;
 
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import com.simibubi.create.content.kinetics.belt.behaviour.DirectBeltInputBehaviour;
-import com.simibubi.create.foundation.advancement.AllAdvancements;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import com.simibubi.create.foundation.item.ItemHelper;
+import com.simibubi.create.foundation.utility.NBTHelper;
 import com.simibubi.create.foundation.utility.VecHelper;
-import gg.wildblood.ab_initio.AbInitio;
 import gg.wildblood.ab_initio.blocks.ModRecipeTypes;
 import io.github.fabricators_of_create.porting_lib.transfer.TransferUtil;
 import io.github.fabricators_of_create.porting_lib.transfer.ViewOnlyWrappedStorageView;
 import io.github.fabricators_of_create.porting_lib.transfer.item.ItemStackHandler;
 import io.github.fabricators_of_create.porting_lib.transfer.item.ItemStackHandlerContainer;
 import io.github.fabricators_of_create.porting_lib.transfer.item.ItemStackHandlerSlot;
+import io.github.fabricators_of_create.porting_lib.util.NBTSerializer;
 import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
 import net.fabricmc.fabric.api.transfer.v1.storage.Storage;
 import net.fabricmc.fabric.api.transfer.v1.storage.StorageView;
@@ -24,6 +24,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
 import net.minecraft.particle.ItemStackParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.math.BlockPos;
@@ -33,9 +34,7 @@ import net.minecraft.util.math.Vec3d;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 
 @SuppressWarnings("UnstableApiUsage")
@@ -43,14 +42,17 @@ public class SieveBlockEntity extends KineticBlockEntity implements SidedStorage
 	public ItemStackHandlerContainer inputInv;
 	public ItemStackHandler outputInv;
 	private final SieveBlockEntity.SieveInventoryHandler capability;
-	private int timer;
+	public int timer;
 	private SievingRecipe lastRecipe;
+
+	public ItemStack visualizedInputItem;
 
 	public SieveBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
 		super(type, pos, state);
 		inputInv = new ItemStackHandlerContainer(1);
 		outputInv = new ItemStackHandler(9);
 		capability = new SieveBlockEntity.SieveInventoryHandler();
+		visualizedInputItem = ItemStack.EMPTY;
 	}
 
 	@Override
@@ -62,7 +64,6 @@ public class SieveBlockEntity extends KineticBlockEntity implements SidedStorage
 	@Override
 	public void onSpeedChanged(float prevSpeed) {
 		super.onSpeedChanged(prevSpeed);
-		AbInitio.LOGGER.info("Speed changed from {} to {}", prevSpeed, this.getSpeed());
 	}
 
 	@Override
@@ -88,19 +89,21 @@ public class SieveBlockEntity extends KineticBlockEntity implements SidedStorage
 			return;
 		}
 
-		if (inputInv.getStackInSlot(0)
-			.isEmpty())
+		if (inputInv.getStackInSlot(0).isEmpty())
 			return;
 
+		Optional<SievingRecipe> recipe = ModRecipeTypes.SIEVING.find(inputInv, world);
+		recipe.ifPresent(sievingRecipe -> visualizedInputItem = sievingRecipe.getIngredients().get(0).getMatchingStacks()[0]);
+
 		if (lastRecipe == null || !lastRecipe.matches(inputInv, world)) {
-			Optional<SievingRecipe> recipe = ModRecipeTypes.SIEVING.find(inputInv, world);
-			if (!recipe.isPresent()) {
+			if (recipe.isEmpty()) {
 				timer = 100;
 				sendData();
 			} else {
 				lastRecipe = recipe.get();
 				timer = lastRecipe.getProcessingDuration();
 				sendData();
+				markDirty();
 			}
 			return;
 		}
@@ -135,7 +138,8 @@ public class SieveBlockEntity extends KineticBlockEntity implements SidedStorage
 			lastRecipe.rollResults().forEach(stack -> outputInv.insert(ItemVariant.of(stack), stack.getCount(), t));
 			t.commit();
 		}
-		award(AllAdvancements.MILLSTONE);
+
+		visualizedInputItem = ItemStack.EMPTY;
 
 		sendData();
 		markDirty();
@@ -148,7 +152,7 @@ public class SieveBlockEntity extends KineticBlockEntity implements SidedStorage
 
 		ItemStackParticleEffect data = new ItemStackParticleEffect(ParticleTypes.ITEM, stackInSlot);
 		float angle = world.random.nextFloat() * 360;
-		Vec3d offset = new Vec3d(0, 0, 0.5f);
+		Vec3d offset = new Vec3d(0, .4, .2);
 		offset = VecHelper.rotate(offset, angle, Direction.Axis.Y);
 		Vec3d target = VecHelper.rotate(offset, getSpeed() > 0 ? 25 : -25, Direction.Axis.Y);
 
@@ -162,6 +166,7 @@ public class SieveBlockEntity extends KineticBlockEntity implements SidedStorage
 		compound.putInt("Timer", timer);
 		compound.put("InputInventory", inputInv.serializeNBT());
 		compound.put("OutputInventory", outputInv.serializeNBT());
+		compound.put("VisualizedInputItem", visualizedInputItem.serializeNBT());
 		super.write(compound, clientPacket);
 	}
 
@@ -170,6 +175,7 @@ public class SieveBlockEntity extends KineticBlockEntity implements SidedStorage
 		timer = compound.getInt("Timer");
 		inputInv.deserializeNBT(compound.getCompound("InputInventory"));
 		outputInv.deserializeNBT(compound.getCompound("OutputInventory"));
+		visualizedInputItem = ItemStack.fromNbt(compound.getCompound("VisualizedInputItem"));
 		super.read(compound, clientPacket);
 	}
 
