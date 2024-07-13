@@ -38,8 +38,6 @@ public class SieveBlock extends HorizontalKineticBlock implements IBE<SieveBlock
 		super(settings.nonOpaque());
 	}
 
-	// #Todo: Animation for Sieving... ?
-
 	@Override
 	public BlockState getPlacementState(ItemPlacementContext context) {
 		Direction prefferedSide = getPreferredHorizontalFacing(context);
