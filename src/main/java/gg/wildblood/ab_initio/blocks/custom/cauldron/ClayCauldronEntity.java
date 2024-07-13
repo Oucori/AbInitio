@@ -9,16 +9,20 @@ import com.simibubi.create.foundation.item.ItemHelper;
 import gg.wildblood.ab_initio.blocks.ModRecipeTypes;
 import gg.wildblood.ab_initio.blocks.custom.sieve.SieveBlockEntity;
 import gg.wildblood.ab_initio.blocks.custom.sieve.SievingRecipe;
+import io.github.fabricators_of_create.porting_lib.transfer.TransferUtil;
 import io.github.fabricators_of_create.porting_lib.transfer.item.ItemStackHandler;
 import io.github.fabricators_of_create.porting_lib.transfer.item.ItemStackHandlerContainer;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
+import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
 import net.fabricmc.fabric.api.transfer.v1.storage.Storage;
 import net.fabricmc.fabric.api.transfer.v1.storage.base.CombinedStorage;
 import net.fabricmc.fabric.api.transfer.v1.storage.base.SidedStorageBlockEntity;
+import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
 import net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
@@ -58,6 +62,11 @@ public class ClayCauldronEntity extends SmartBlockEntity implements IHaveGoggleI
 			//return;
 		// Check if we have space in output Tank
 
+		try (Transaction t = TransferUtil.getTransaction()) {
+			outputTank.getCapability().insert(FluidVariant.of(Fluids.LAVA), 1000, t);
+			t.commit();
+		}
+
 		if (timer > 0) {
 			timer -= getProcessingSpeed();
 
@@ -94,6 +103,7 @@ public class ClayCauldronEntity extends SmartBlockEntity implements IHaveGoggleI
 		behaviours.add(new DirectBeltInputBehaviour(this));
 		outputTank = new SmartFluidTankBehaviour(SmartFluidTankBehaviour.OUTPUT, this, 2, FluidConstants.BUCKET, true)
 			.whenFluidUpdates(() -> contentsChanged = true)
+			.allowExtraction()
 			.forbidInsertion();
 
 		behaviours.add(outputTank);
