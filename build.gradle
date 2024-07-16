@@ -23,6 +23,8 @@ repositories {
 	maven { url = "https://jitpack.io/" } // Mixin Extras, Fabric ASM
 	maven { url = "https://maven.tterrag.com/" } // Flywheel
 	maven { url = "https://maven.nucleoid.xyz/" } // Placeholder API
+	maven { url = "https://maven.blamejared.com" } // Botania
+	maven { url = "https://maven.ladysnake.org/releases" } // Ladysnake Mods
 }
 
 loom {
@@ -67,6 +69,11 @@ dependencies {
 
 
 	//modImplementation("net.fabricmc.fabric-api:fabric-api:${fabric_api_version}")
+
+	// Botania
+	compileOnly("vazkii.botania:Botania:${botania_version}")
+	modLocalRuntime("vazkii.botania:Botania:${botania_version}")
+
 
 	// Create - dependencies are added transitively
 	modImplementation("com.simibubi.create:create-fabric-${minecraft_version}:${create_version}")

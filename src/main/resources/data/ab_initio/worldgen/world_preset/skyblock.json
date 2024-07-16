@@ -1,0 +1,49 @@
+{
+  "__comment": "[VanillaCopy] normal world preset, with own overworld generator type",
+  "dimensions": {
+    "minecraft:overworld": {
+      "type": "minecraft:overworld",
+      "generator": {
+        "type": "botania:skyblock",
+        "biome_source": {
+          "type": "minecraft:multi_noise",
+          "preset": "minecraft:overworld"
+        },
+        "settings": "minecraft:overworld"
+      }
+    },
+    "minecraft:the_end": {
+      "type": "minecraft:the_end",
+      "generator": {
+        "type": "minecraft:flat",
+        "biome_source": {
+          "type": "minecraft:the_end"
+        },
+        "settings": {
+          "biome": "minecraft:the_end",
+          "features": false,
+          "lakes": false,
+          "layers": [],
+          "structure_overrides": []
+        }
+      }
+    },
+    "minecraft:the_nether": {
+      "type": "minecraft:the_nether",
+      "generator": {
+        "type": "minecraft:flat",
+        "biome_source": {
+          "type": "minecraft:multi_noise",
+          "preset": "minecraft:nether"
+        },
+        "settings": {
+          "biome": "minecraft:nether_wastes",
+          "features": false,
+          "lakes": false,
+          "layers": [],
+          "structure_overrides": []
+        }
+      }
+    }
+  }
+}
